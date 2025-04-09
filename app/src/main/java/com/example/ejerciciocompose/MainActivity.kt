@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,10 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -39,6 +44,9 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun app() {
+
+        var counter by remember{ mutableStateOf(0)}
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -54,12 +62,13 @@ class MainActivity : ComponentActivity() {
                     contentDescription = "Imagen"
 
                 )
-                Row{
+                Row(modifier = Modifier.padding(top = 8.dp)){
                     Image(
-                        modifier = Modifier
-
-
+                        painter = painterResource(id=R.drawable.huevandroid),
+                        contentDescription = null,
+                        modifier = Modifier.clickable { counter++ }
                     )
+                    Text(text="1", color= androidx.compose.ui.graphics.Color.White, modifier = Modifier.padding(start = 10.dp))
 
                 }
 
