@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun app() {
 
-        var counter by remember{ mutableStateOf(0)}
+        var counter by rememberSaveable{ mutableStateOf(0)}
 
         LazyColumn(
             modifier = Modifier
@@ -66,9 +67,9 @@ class MainActivity : ComponentActivity() {
                     Image(
                         painter = painterResource(id=R.drawable.huevandroid),
                         contentDescription = null,
-                        modifier = Modifier.clickable { counter++ }
+                        modifier = Modifier.clickable {counter++}
                     )
-                    Text(text="1", color= androidx.compose.ui.graphics.Color.White, modifier = Modifier.padding(start = 10.dp))
+                    Text(text=counter.toString(), color= androidx.compose.ui.graphics.Color.White, modifier = Modifier.padding(start = 10.dp))
 
                 }
 
